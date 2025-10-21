@@ -28,3 +28,21 @@ export async function getKpiTool(args: GetKpiArgs) {
   const value = pick[args.agg];
   return { ok: true, data: { metric: args.metric, agg: args.agg, range: args.range, value } };
 }
+
+export async function setFilterTool(args: SetFilterArgs) {
+  // Validate operator
+  const validOps = ["eq", "gt", "lt", "gte", "lte", "contains"];
+  if (!validOps.includes(args.op)) {
+    return { ok: false, error: "invalid_operator" };
+  }
+
+  // For demo purposes, just echo back the filter
+  return { 
+    ok: true, 
+    filter: { 
+      field: args.field, 
+      op: args.op, 
+      value: args.value 
+    } 
+  };
+}

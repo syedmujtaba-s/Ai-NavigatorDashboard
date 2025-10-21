@@ -1,8 +1,14 @@
 // src/app/api/chat/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { navigateTool, getKpiTool, setFilterTool } from "@/server/tools";
+import { navigateTool, getKpiTool, setFilterTool, NavigateArgs, GetKpiArgs, SetFilterArgs } from "@/server/tools";
 
-function simpleRouter(userText: string) {
+type RouterResult = 
+  | { name: "navigate"; args: NavigateArgs }
+  | { name: "get_kpi"; args: GetKpiArgs }
+  | { name: "set_filter"; args: { field: string; op: string; value: string } }
+  | { name: "text"; text: string };
+
+function simpleRouter(userText: string): RouterResult {
   const t = userText.toLowerCase();
 
   // navigate intents
