@@ -5,7 +5,7 @@ import { navigateTool, getKpiTool, setFilterTool, NavigateArgs, GetKpiArgs, SetF
 type RouterResult = 
   | { name: "navigate"; args: NavigateArgs }
   | { name: "get_kpi"; args: GetKpiArgs }
-  | { name: "set_filter"; args: { field: string; op: string; value: string } }
+  | { name: "set_filter"; args: SetFilterArgs }
   | { name: "text"; text: string };
 
 function simpleRouter(userText: string): RouterResult {
