@@ -1,6 +1,12 @@
 // src/data/navigationMap.ts
 
-export const routes = [
+export type Route = {
+  id: string;
+  name: string;
+  path: string;
+};
+
+export const routes: Route[] = [
   { id: "dashboard_home", name: "Dashboard", path: "/" }, // ✅ fixed path
   { id: "calendar", name: "Calendar", path: "/calendar" },
   { id: "profile", name: "Profile", path: "/profile" },
@@ -18,5 +24,15 @@ export const routes = [
   { id: "signup", name: "Sign Up", path: "/signup" },
 ];
 
-export const allowedAgg = ["max", "min", "sum", "avg", "count"];
-export const ranges = ["last_7d", "last_30d", "this_week", "this_month"];
+export const allowedAgg = ["max", "min", "sum", "avg", "count"] as const;
+export type Agg = typeof allowedAgg[number];
+
+export const ranges = ["last_7d", "last_30d", "this_week", "this_month"] as const;
+export type Range = typeof ranges[number];
+
+export const metrics = [
+  { key: "sales", type: "currency", description: "Gross sales" },
+  { key: "orders", type: "count", description: "Order count" },
+  { key: "customers", type: "count", description: "Customer count" }
+] as const;
+export type Metric = typeof metrics[number]["key"];
