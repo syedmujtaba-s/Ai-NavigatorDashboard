@@ -10,7 +10,8 @@ export default function ChatDock() {
   const [open, setOpen] = useState(true);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "assistant", content: "Hi! Ask me to navigate (orders/customers/sales) or KPI like 'max sales this week'." }
+    { role: "assistant", content: "👋 Hi! I’m your Dashboard Navigator. You can ask me things like ‘Go to profile’, ‘Open bar chart’, or ‘Show calendar’."
+ }
   ]);
   const router = useRouter();
 

@@ -11,12 +11,51 @@ type RouterResult =
 function simpleRouter(userText: string): RouterResult {
   const t = userText.toLowerCase();
 
-  // navigate intents
-  if (t.includes("orders"))    return { name: "navigate", args: { routeId: "orders" } };
-  if (t.includes("customers")) return { name: "navigate", args: { routeId: "customers" } };
-  if (t.includes("sales"))     return { name: "navigate", args: { routeId: "sales" } };
-  if (t.includes("home") || t.includes("dashboard"))
-    return { name: "navigate", args: { routeId: "dashboard_home" } };
+ if (t.includes("dashboard") || t.includes("home"))
+  return { name: "navigate", args: { routeId: "dashboard_home" } };
+
+if (t.includes("calendar"))
+  return { name: "navigate", args: { routeId: "calendar" } };
+
+if (t.includes("profile") || t.includes("user"))
+  return { name: "navigate", args: { routeId: "profile" } };
+
+if (t.includes("form"))
+  return { name: "navigate", args: { routeId: "form_elements" } };
+
+if (t.includes("table"))
+  return { name: "navigate", args: { routeId: "basic_tables" } };
+
+if (t.includes("bar"))
+  return { name: "navigate", args: { routeId: "bar_chart" } };
+
+if (t.includes("line"))
+  return { name: "navigate", args: { routeId: "line_chart" } };
+
+if (t.includes("alert"))
+  return { name: "navigate", args: { routeId: "alerts" } };
+
+if (t.includes("avatar"))
+  return { name: "navigate", args: { routeId: "avatars" } };
+
+if (t.includes("badge"))
+  return { name: "navigate", args: { routeId: "badge" } };
+
+if (t.includes("button"))
+  return { name: "navigate", args: { routeId: "buttons" } };
+
+if (t.includes("image"))
+  return { name: "navigate", args: { routeId: "images" } };
+
+if (t.includes("video"))
+  return { name: "navigate", args: { routeId: "videos" } };
+
+if (t.includes("signin") || t.includes("login"))
+  return { name: "navigate", args: { routeId: "signin" } };
+
+if (t.includes("signup") || t.includes("register"))
+  return { name: "navigate", args: { routeId: "signup" } };
+
 
   // KPI intents: e.g., "max sales this week"
   const aggMatch    = /(max|min|sum|avg|average|count)/.exec(t);
@@ -42,11 +81,13 @@ function simpleRouter(userText: string): RouterResult {
   }
 
   // default help text
-  return {
-    name: "text",
-    text:
-      "I can navigate (home/sales/orders/customers) or fetch KPIs, e.g. 'max sales this week'. Try 'go to orders'."
-  };
+// default help text
+return {
+  name: "text",
+  text:
+    "Hmm 🤔 I didn’t recognize that command. Maybe try 'go to home', 'open bar chart', or 'show calendar'."
+};
+
 }
 
 export async function POST(req: NextRequest) {
